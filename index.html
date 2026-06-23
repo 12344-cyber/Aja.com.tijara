@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صل على محمد - تصميم وتحميل الصور الدعوية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Reem+Kufi+Fun:wght@600;700&display=swap" rel="stylesheet">
+    <title>صل على محمد - صور متحركة GIF للتحميل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,40 +19,49 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Cairo', 'Reem Kufi Fun', sans-serif;
+            font-family: 'Cairo', sans-serif;
             padding: 20px;
-            gap: 30px;
+            gap: 25px;
             background-image: radial-gradient(circle at 30% 40%, #1a1025 0%, #03010a 90%);
         }
 
-        /* منطقة التصميم */
-        .design-area {
-            position: relative;
-            width: 600px;
-            height: 600px;
+        .main-title {
+            color: #ffaa66;
+            font-size: 2rem;
+            font-weight: 900;
+            text-shadow: 0 0 30px #ff4400, 0 0 60px #ff2200;
+            text-align: center;
+            animation: titleGlow 2s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px #ff4400, 0 0 60px #ff2200; }
+            100% { text-shadow: 0 0 50px #ff8800, 0 0 90px #ff4400; }
+        }
+
+        .preview-container {
+            background: #0d0018;
             border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 0 80px rgba(255, 0, 50, 0.6), 0 0 160px rgba(255, 80, 0, 0.4);
-            border: 3px solid rgba(255, 60, 30, 0.7);
-            animation: borderPulse 1.5s infinite;
+            padding: 20px;
+            border: 3px solid rgba(255, 60, 30, 0.6);
+            box-shadow: 0 0 60px rgba(255, 0, 50, 0.4), 0 0 120px rgba(255, 80, 0, 0.3);
+            animation: containerPulse 2s infinite;
         }
 
-        @keyframes borderPulse {
-            0%, 100% { border-color: rgba(255, 60, 30, 0.7); }
-            50% { border-color: rgba(255, 160, 30, 0.9); }
+        @keyframes containerPulse {
+            0%, 100% { box-shadow: 0 0 60px rgba(255, 0, 50, 0.4), 0 0 120px rgba(255, 80, 0, 0.3); }
+            50% { box-shadow: 0 0 80px rgba(255, 0, 50, 0.7), 0 0 150px rgba(255, 80, 0, 0.5); }
         }
 
-        /* Canvas للرسم */
-        #mainCanvas {
-            width: 100%;
-            height: 100%;
+        .preview-container img {
             display: block;
-            background: #0a0015;
+            width: 400px;
+            height: 400px;
+            border-radius: 15px;
         }
 
-        /* لوحة التحكم */
         .controls {
-            background: rgba(20, 5, 30, 0.9);
+            background: rgba(20, 5, 30, 0.95);
             border-radius: 20px;
             padding: 25px 30px;
             display: flex;
@@ -62,201 +71,288 @@
             justify-content: center;
             border: 1px solid rgba(255, 100, 50, 0.4);
             box-shadow: 0 0 40px rgba(255, 30, 0, 0.3);
-            max-width: 650px;
+            max-width: 700px;
             width: 100%;
         }
 
-        .btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+        .section-label {
+            color: #ffccaa;
             font-weight: 700;
+            font-size: 1rem;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .color-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 4px solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Cairo', sans-serif;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        .btn-download {
-            background: linear-gradient(135deg, #ff2200, #ff6600);
-            color: white;
-            box-shadow: 0 8px 25px rgba(255, 50, 0, 0.5);
-            font-size: 1.2rem;
-            animation: btnGlow 1.5s infinite alternate;
+        .color-btn:hover {
+            transform: scale(1.15);
+            border-color: white;
         }
 
-        @keyframes btnGlow {
-            0% { box-shadow: 0 8px 25px rgba(255, 50, 0, 0.5); }
-            100% { box-shadow: 0 12px 40px rgba(255, 120, 0, 0.8); }
+        .color-btn.active {
+            border-color: #ffffff;
+            box-shadow: 0 0 30px currentColor;
+            transform: scale(1.1);
         }
 
-        .btn-download:hover {
-            background: linear-gradient(135deg, #ff4400, #ff8800);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 45px rgba(255, 80, 0, 0.9);
-        }
-
-        .btn-style {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffccaa;
+        .effect-btn {
+            padding: 12px 22px;
+            border-radius: 50px;
             border: 2px solid rgba(255, 100, 50, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffccaa;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
-        .btn-style:hover {
-            background: rgba(255, 50, 0, 0.2);
+        .effect-btn:hover {
+            background: rgba(255, 50, 0, 0.25);
             border-color: #ff6600;
             color: white;
         }
 
-        .btn-style.active {
-            background: rgba(255, 60, 0, 0.4);
+        .effect-btn.active {
+            background: rgba(255, 60, 0, 0.5);
             border-color: #ff8800;
             color: #ffffff;
-            box-shadow: 0 0 25px rgba(255, 80, 0, 0.6);
+            box-shadow: 0 0 30px rgba(255, 80, 0, 0.6);
         }
 
-        .color-picker {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .color-dot {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
+        .download-btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ff2200, #ff6600);
+            color: white;
             cursor: pointer;
-            border: 3px solid transparent;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 50, 0, 0.5);
+            animation: btnGlow 1.5s infinite alternate;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
         }
 
-        .color-dot:hover {
-            border-color: white;
-            transform: scale(1.2);
+        @keyframes btnGlow {
+            0% { box-shadow: 0 10px 30px rgba(255, 50, 0, 0.5); }
+            100% { box-shadow: 0 15px 45px rgba(255, 120, 0, 0.8); }
         }
 
-        .color-dot.active {
-            border-color: #ffffff;
-            box-shadow: 0 0 20px currentColor;
+        .download-btn:hover {
+            background: linear-gradient(135deg, #ff4400, #ff8800);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(255, 80, 0, 0.9);
         }
 
-        .label {
+        .download-btn:active {
+            transform: scale(0.95);
+        }
+
+        .status-message {
             color: #ffccaa;
             font-weight: 700;
-            font-size: 1rem;
-            margin: 0 5px;
+            text-align: center;
+            min-height: 30px;
+            animation: fadeInOut 2s;
         }
 
-        /* شريط العنوان */
-        .title {
-            color: #ffaa66;
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 0 30px #ff4400;
-            text-align: center;
-            margin-bottom: 5px;
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* للشاشات الصغيرة */
+        @media (max-width: 500px) {
+            .preview-container img {
+                width: 280px;
+                height: 280px;
+            }
+            .color-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .effect-btn {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="title">✨ صلّ على محمد ﷺ ✨</div>
+    <div class="main-title">✨ صلّ على محمد ﷺ ✨</div>
 
-    <!-- منطقة التصميم -->
-    <div class="design-area" id="designArea">
-        <canvas id="mainCanvas" width="1200" height="1200"></canvas>
+    <div class="preview-container">
+        <img id="previewGif" src="" alt="معاينة الصورة المتحركة">
     </div>
 
-    <!-- أزرار التحكم -->
+    <div class="status-message" id="statusMsg"></div>
+
     <div class="controls">
-        <span class="label">🎨 تأثير الإضاءة:</span>
-        <button class="btn btn-style active" onclick="changeLightMode('hazard')" id="btnHazard">🚨 ضوء الخطر</button>
-        <button class="btn btn-style" onclick="changeLightMode('fireworks')" id="btnFireworks">🎆 ألعاب نارية</button>
-        <button class="btn btn-style" onclick="changeLightMode('neon')" id="btnNeon">💡 نيون فسفوري</button>
-        <button class="btn btn-style" onclick="changeLightMode('pulse')" id="btnPulse">💓 نبض متوهج</button>
+        <div class="section-label">🎨 اختر لون الإضاءة:</div>
         
-        <span class="label">🎯 لون الثيم:</span>
-        <div class="color-picker">
-            <div class="color-dot active" style="background: #ff2200;" onclick="changeTheme('red')" id="dotRed"></div>
-            <div class="color-dot" style="background: #ff6600;" onclick="changeTheme('orange')" id="dotOrange"></div>
-            <div class="color-dot" style="background: #ff0099;" onclick="changeTheme('pink')" id="dotPink"></div>
-            <div class="color-dot" style="background: #ffcc00;" onclick="changeTheme('gold')" id="dotGold"></div>
-        </div>
+        <button class="color-btn active" style="background: #ff2200;" data-color="red" title="أحمر فسفوري">🔴</button>
+        <button class="color-btn" style="background: #ff6600;" data-color="orange" title="برتقالي ناري">🟠</button>
+        <button class="color-btn" style="background: #ff0099;" data-color="pink" title="وردي لامع">🩷</button>
+        <button class="color-btn" style="background: #ffcc00;" data-color="gold" title="ذهبي">🟡</button>
+        <button class="color-btn" style="background: #00ff88;" data-color="green" title="أخضر نيون">🟢</button>
 
-        <button class="btn btn-download" onclick="downloadImage()">📥 تحميل الصورة</button>
+        <div class="section-label">⚡ اختر تأثير الحركة:</div>
+        
+        <button class="effect-btn active" data-effect="hazard">🚨 وميض الخطر</button>
+        <button class="effect-btn" data-effect="fireworks">🎆 ألعاب نارية</button>
+        <button class="effect-btn" data-effect="neon">💡 نيون نابض</button>
+        <button class="effect-btn" data-effect="pulse">💓 نبض القلب</button>
+        <button class="effect-btn" data-effect="sparkle">✨ توهج متلألئ</button>
+
+        <button class="download-btn" onclick="downloadGIF()">📥 تحميل الصورة المتحركة GIF</button>
     </div>
+
+    <!-- مكتبة gif.js لإنشاء GIF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+    
+    <!-- مكتبة إضافية للخطوط -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js"></script>
 
     <script>
-        // ==================== إعدادات ====================
-        const canvas = document.getElementById('mainCanvas');
-        const ctx = canvas.getContext('2d');
-        const W = canvas.width;
-        const H = canvas.height;
+        // ==================== المتغيرات الرئيسية ====================
+        let selectedColor = 'red';
+        let selectedEffect = 'hazard';
+        let currentGifUrl = null;
 
-        let lightMode = 'hazard'; // hazard, fireworks, neon, pulse
-        let themeColor = 'red'; // red, orange, pink, gold
-        let animationFrame;
-        let particles = [];
-        let time = 0;
-
-        // الألوان حسب الثيم
-        const themeColors = {
-            red: { primary: '#ff2200', secondary: '#ff4400', glow: '#ff0000', accent: '#ff6644' },
-            orange: { primary: '#ff6600', secondary: '#ff8800', glow: '#ff4400', accent: '#ffaa33' },
-            pink: { primary: '#ff0099', secondary: '#ff33aa', glow: '#ff0066', accent: '#ff77bb' },
-            gold: { primary: '#ffaa00', secondary: '#ffcc00', glow: '#ff8800', accent: '#ffdd44' }
+        // تعريف الألوان
+        const colorPalettes = {
+            red: {
+                primary: '#ff2200',
+                secondary: '#ff4400',
+                glow: '#ff0000',
+                accent: '#ff6644',
+                light: '#ff8866',
+                rgb: [255, 34, 0]
+            },
+            orange: {
+                primary: '#ff6600',
+                secondary: '#ff8800',
+                glow: '#ff4400',
+                accent: '#ffaa33',
+                light: '#ffcc66',
+                rgb: [255, 102, 0]
+            },
+            pink: {
+                primary: '#ff0099',
+                secondary: '#ff33aa',
+                glow: '#ff0066',
+                accent: '#ff77bb',
+                light: '#ffaadd',
+                rgb: [255, 0, 153]
+            },
+            gold: {
+                primary: '#ffaa00',
+                secondary: '#ffcc00',
+                glow: '#ff8800',
+                accent: '#ffdd44',
+                light: '#ffee88',
+                rgb: [255, 170, 0]
+            },
+            green: {
+                primary: '#00ff88',
+                secondary: '#33ffaa',
+                glow: '#00ff44',
+                accent: '#66ffcc',
+                light: '#aaffee',
+                rgb: [0, 255, 136]
+            }
         };
 
-        // ==================== جسيمات ====================
-        class Particle {
-            constructor() {
-                this.reset();
+        // ==================== إنشاء إطارات GIF ====================
+        function createGIFFrames(canvas, ctx, color, effect, numFrames) {
+            const frames = [];
+            const W = canvas.width;
+            const H = canvas.height;
+            const palette = colorPalettes[color];
+
+            // جسيمات للألعاب النارية
+            let particles = [];
+            if (effect === 'fireworks' || effect === 'sparkle') {
+                for (let i = 0; i < 60; i++) {
+                    particles.push({
+                        x: Math.random() * W,
+                        y: Math.random() * H,
+                        size: Math.random() * 5 + 2,
+                        speedX: (Math.random() - 0.5) * 3,
+                        speedY: (Math.random() - 0.5) * 4 - 1,
+                        life: Math.random(),
+                        decay: Math.random() * 0.03 + 0.01,
+                        color: palette
+                    });
+                }
             }
-            reset() {
-                this.x = Math.random() * W;
-                this.y = Math.random() * H;
-                this.size = Math.random() * 4 + 2;
-                this.speedX = (Math.random() - 0.5) * 2;
-                this.speedY = (Math.random() - 0.5) * 3 - 1;
-                this.life = 1;
-                this.decay = Math.random() * 0.02 + 0.008;
-                this.color = themeColors[themeColor];
+
+            for (let frame = 0; frame < numFrames; frame++) {
+                // مسح الكانفاس
+                ctx.clearRect(0, 0, W, H);
+
+                // خلفية
+                const bgGradient = ctx.createRadialGradient(W/2, H/2, 50, W/2, H/2, W*0.8);
+                bgGradient.addColorStop(0, '#1a0a2e');
+                bgGradient.addColorStop(0.6, '#0d0018');
+                bgGradient.addColorStop(1, '#020008');
+                ctx.fillStyle = bgGradient;
+                ctx.fillRect(0, 0, W, H);
+
+                // رسم التأثير حسب النوع
+                switch(effect) {
+                    case 'hazard':
+                        drawHazardFrames(ctx, W, H, palette, frame, numFrames);
+                        break;
+                    case 'fireworks':
+                        drawFireworksFrames(ctx, W, H, palette, frame, particles);
+                        break;
+                    case 'neon':
+                        drawNeonFrames(ctx, W, H, palette, frame, numFrames);
+                        break;
+                    case 'pulse':
+                        drawPulseFrames(ctx, W, H, palette, frame, numFrames);
+                        break;
+                    case 'sparkle':
+                        drawSparkleFrames(ctx, W, H, palette, frame, particles);
+                        break;
+                }
+
+                // رسم النص
+                drawTextOnFrame(ctx, W, H, palette, frame, numFrames, effect);
+
+                // حفظ الإطار
+                frames.push(ctx.getImageData(0, 0, W, H));
             }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life -= this.decay;
-                if (this.life <= 0) this.reset();
-            }
-            draw(ctx) {
-                const alpha = this.life * 0.9;
-                const c = this.color;
-                ctx.save();
-                ctx.globalAlpha = alpha;
-                ctx.shadowColor = c.glow;
-                ctx.shadowBlur = this.size * 6;
-                ctx.fillStyle = c.primary;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = c.secondary;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 0.6, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
+
+            return frames;
         }
 
-        // إنشاء جسيمات
-        for (let i = 0; i < 80; i++) {
-            particles.push(new Particle());
-        }
-
-        // ==================== رسم النص ====================
-        function drawText(glowIntensity, extraGlow = 0) {
-            const c = themeColors[themeColor];
+        function drawTextOnFrame(ctx, W, H, palette, frame, numFrames, effect) {
             const cx = W / 2;
             const cy = H / 2;
 
@@ -264,78 +360,87 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
+            let glowIntensity = 1;
+            let extraBlur = 0;
+
+            switch(effect) {
+                case 'hazard':
+                    const flashOn = Math.sin(frame * 0.5) > 0.2 || Math.sin(frame * 1.1) > 0.5;
+                    glowIntensity = flashOn ? 1.5 : 0.4;
+                    extraBlur = flashOn ? 35 : 5;
+                    break;
+                case 'neon':
+                    glowIntensity = 0.8 + Math.sin(frame * 0.15) * 0.3;
+                    extraBlur = 15 + Math.sin(frame * 0.2) * 10;
+                    break;
+                case 'pulse':
+                    const pulse = Math.sin(frame * 0.12) * 0.5 + 0.5;
+                    glowIntensity = 0.7 + pulse * 0.7;
+                    extraBlur = pulse * 45;
+                    break;
+                case 'sparkle':
+                    glowIntensity = 0.9 + Math.sin(frame * 0.18) * 0.2;
+                    extraBlur = 20;
+                    break;
+                default:
+                    glowIntensity = 1;
+                    extraBlur = 15;
+            }
+
             // طبقات التوهج
             const glowLayers = [
-                { blur: 80, color: c.glow, alpha: 0.4 * glowIntensity },
-                { blur: 50, color: c.primary, alpha: 0.6 * glowIntensity },
-                { blur: 30, color: c.secondary, alpha: 0.7 * glowIntensity },
-                { blur: 15, color: c.accent, alpha: 0.9 * glowIntensity },
+                { blur: 70 + extraBlur, color: palette.glow, alpha: 0.35 * glowIntensity },
+                { blur: 45 + extraBlur, color: palette.primary, alpha: 0.55 * glowIntensity },
+                { blur: 25 + extraBlur, color: palette.secondary, alpha: 0.75 * glowIntensity },
+                { blur: 12 + extraBlur, color: palette.accent, alpha: 0.9 * glowIntensity },
             ];
 
-            // رسم التوهج
             for (let layer of glowLayers) {
                 ctx.save();
                 ctx.shadowColor = layer.color;
-                ctx.shadowBlur = layer.blur + extraGlow;
+                ctx.shadowBlur = layer.blur;
                 ctx.globalAlpha = layer.alpha;
                 ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 180px "Cairo", "Reem Kufi Fun", sans-serif';
-                ctx.fillText('صَلِّ عَلَىٰ', cx, cy - 110);
-                ctx.font = 'bold 220px "Cairo", "Reem Kufi Fun", sans-serif';
-                ctx.fillText('مُحَمَّد', cx, cy + 110);
+                ctx.font = 'bold 160px "Cairo", "Amiri", serif';
+                ctx.fillText('صَلِّ عَلَىٰ', cx, cy - 100);
+                ctx.font = 'bold 200px "Cairo", "Amiri", serif';
+                ctx.fillText('مُحَمَّد', cx, cy + 100);
                 ctx.restore();
             }
 
-            // النص الأساسي
+            // النص الأبيض الأساسي
             ctx.save();
-            ctx.shadowColor = c.glow;
-            ctx.shadowBlur = 20 + extraGlow;
+            ctx.shadowColor = palette.glow;
+            ctx.shadowBlur = 15 + extraBlur;
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 180px "Cairo", "Reem Kufi Fun", sans-serif';
-            ctx.fillText('صَلِّ عَلَىٰ', cx, cy - 110);
-            ctx.font = 'bold 220px "Cairo", "Reem Kufi Fun", sans-serif';
-            ctx.fillText('مُحَمَّد', cx, cy + 110);
-
-            // ﷺ
-            ctx.font = 'bold 80px "Cairo", "Reem Kufi Fun", sans-serif';
-            ctx.fillText('ﷺ', cx, cy + 220);
+            ctx.font = 'bold 160px "Cairo", "Amiri", serif';
+            ctx.fillText('صَلِّ عَلَىٰ', cx, cy - 100);
+            ctx.font = 'bold 200px "Cairo", "Amiri", serif';
+            ctx.fillText('مُحَمَّد', cx, cy + 100);
+            ctx.font = 'bold 70px "Cairo", "Amiri", serif';
+            ctx.fillText('ﷺ', cx, cy + 210);
             ctx.restore();
 
             ctx.restore();
         }
 
-        // ==================== رسم الخلفية ====================
-        function drawBackground() {
-            // خلفية داكنة مع تدرج
-            const gradient = ctx.createRadialGradient(W/2, H/2, 100, W/2, H/2, W*0.8);
-            gradient.addColorStop(0, '#1a0a2e');
-            gradient.addColorStop(0.5, '#0d0018');
-            gradient.addColorStop(1, '#020008');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, W, H);
-        }
-
-        // ==================== تأثيرات الإضاءة ====================
-        function drawHazardEffect(intensity) {
-            const c = themeColors[themeColor];
-            // وميض متقطع مثل أضواء الخطر
-            const flashOn = Math.sin(time * 0.3) > 0.3 || Math.sin(time * 0.7) > 0.6;
-
+        function drawHazardFrames(ctx, W, H, palette, frame, numFrames) {
+            const flashOn = Math.sin(frame * 0.5) > 0.2 || Math.sin(frame * 1.1) > 0.5;
+            
             if (flashOn) {
-                const alpha = intensity * 0.35;
                 ctx.save();
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = c.glow;
+                ctx.globalAlpha = 0.3;
+                ctx.fillStyle = palette.glow;
                 ctx.fillRect(0, 0, W, H);
-
+                
                 // حلقات متحدة المركز
-                for (let i = 0; i < 5; i++) {
-                    const radius = 250 + i * 100 + Math.sin(time + i) * 30;
-                    ctx.strokeStyle = c.primary;
-                    ctx.globalAlpha = alpha * (0.5 - i * 0.08);
+                for (let i = 0; i < 4; i++) {
+                    const radius = 220 + i * 90 + Math.sin(frame * 0.3 + i) * 25;
+                    ctx.strokeStyle = palette.primary;
+                    ctx.globalAlpha = 0.4 - i * 0.08;
                     ctx.lineWidth = 3 + i;
-                    ctx.shadowColor = c.glow;
-                    ctx.shadowBlur = 30;
+                    ctx.shadowColor = palette.glow;
+                    ctx.shadowBlur = 25;
                     ctx.beginPath();
                     ctx.arc(W/2, H/2, radius, 0, Math.PI * 2);
                     ctx.stroke();
@@ -343,80 +448,94 @@
                 ctx.restore();
             }
 
-            // خطوط أفقية متقطعة
-            if (Math.sin(time * 0.5) > 0) {
+            // خطوط أفقية
+            if (Math.sin(frame * 0.4) > -0.2) {
                 ctx.save();
-                ctx.globalAlpha = 0.2 * intensity;
-                ctx.strokeStyle = c.secondary;
-                ctx.lineWidth = 8;
-                ctx.shadowColor = c.glow;
-                ctx.shadowBlur = 40;
-                for (let y = 50; y < H; y += 120) {
-                    const offset = Math.sin(time * 2 + y) * 40;
+                ctx.globalAlpha = 0.25;
+                ctx.strokeStyle = palette.secondary;
+                ctx.lineWidth = 6;
+                ctx.shadowColor = palette.glow;
+                ctx.shadowBlur = 35;
+                for (let y = 60; y < H; y += 110) {
+                    const offset = Math.sin(frame * 0.3 + y * 0.01) * 35;
                     ctx.beginPath();
-                    ctx.moveTo(100 + offset, y);
-                    ctx.lineTo(W - 100 - offset, y);
+                    ctx.moveTo(120 + offset, y);
+                    ctx.lineTo(W - 120 - offset, y);
                     ctx.stroke();
                 }
                 ctx.restore();
             }
         }
 
-        function drawFireworksEffect(intensity) {
-            const c = themeColors[themeColor];
-            // رسم الجسيمات
+        function drawFireworksFrames(ctx, W, H, palette, frame, particles) {
+            // تحديث ورسم الجسيمات
             particles.forEach(p => {
-                p.update();
-                p.draw(ctx);
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.life -= p.decay;
+                if (p.life <= 0) {
+                    p.x = Math.random() * W;
+                    p.y = Math.random() * H;
+                    p.life = 1;
+                }
+
+                const alpha = p.life * 0.8;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.shadowColor = palette.glow;
+                ctx.shadowBlur = p.size * 7;
+                ctx.fillStyle = palette.primary;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = palette.secondary;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
             });
 
             // دفعات نارية
-            const burstCount = 6;
-            for (let b = 0; b < burstCount; b++) {
-                const bx = W * (0.2 + b * 0.12) + Math.sin(time * 1.5 + b) * 60;
-                const by = H * (0.3 + Math.cos(time * 0.8 + b) * 0.3);
-                const burstSize = 15 + Math.sin(time * 3 + b) * 10;
+            for (let b = 0; b < 5; b++) {
+                const bx = W * (0.2 + b * 0.15) + Math.sin(frame * 0.25 + b) * 50;
+                const by = H * (0.3 + Math.cos(frame * 0.2 + b) * 0.3);
+                const burstSize = 12 + Math.sin(frame * 0.4 + b) * 8;
 
                 ctx.save();
-                ctx.globalAlpha = 0.6 * intensity;
-                ctx.shadowColor = c.glow;
+                ctx.globalAlpha = 0.7;
+                ctx.shadowColor = palette.glow;
                 ctx.shadowBlur = burstSize * 3;
-                ctx.fillStyle = c.primary;
+                ctx.fillStyle = palette.secondary;
 
-                // نجمة نارية
-                for (let i = 0; i < 8; i++) {
-                    const angle = (i / 8) * Math.PI * 2 + time * 0.5;
-                    const dist = burstSize;
-                    const px = bx + Math.cos(angle) * dist;
-                    const py = by + Math.sin(angle) * dist;
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i / 6) * Math.PI * 2 + frame * 0.05;
                     ctx.beginPath();
-                    ctx.arc(px, py, 3 + Math.random() * 3, 0, Math.PI * 2);
+                    ctx.arc(
+                        bx + Math.cos(angle) * burstSize,
+                        by + Math.sin(angle) * burstSize,
+                        3, 0, Math.PI * 2
+                    );
                     ctx.fill();
                 }
                 ctx.restore();
             }
         }
 
-        function drawNeonEffect(intensity) {
-            const c = themeColors[themeColor];
-            // خطوط نيون حول النص
-            ctx.save();
-            ctx.globalAlpha = 0.5 * intensity;
-            ctx.strokeStyle = c.primary;
-            ctx.lineWidth = 4;
-            ctx.shadowColor = c.glow;
-            ctx.shadowBlur = 50;
-
+        function drawNeonFrames(ctx, W, H, palette, frame, numFrames) {
             const cx = W / 2;
             const cy = H / 2;
+            const rectW = 600 + Math.sin(frame * 0.08) * 25;
+            const rectH = 450 + Math.cos(frame * 0.06) * 20;
 
-            // مستطيل نيون
-            const rectW = 650 + Math.sin(time) * 30;
-            const rectH = 480 + Math.cos(time * 0.7) * 20;
+            ctx.save();
+            ctx.globalAlpha = 0.6;
+            ctx.strokeStyle = palette.primary;
+            ctx.lineWidth = 4;
+            ctx.shadowColor = palette.glow;
+            ctx.shadowBlur = 40;
             ctx.strokeRect(cx - rectW/2, cy - rectH/2, rectW, rectH);
 
             // زوايا مضيئة
-            const cornerSize = 50;
             const corners = [
                 { x: cx - rectW/2, y: cy - rectH/2 },
                 { x: cx + rectW/2, y: cy - rectH/2 },
@@ -424,32 +543,29 @@
                 { x: cx + rectW/2, y: cy + rectH/2 },
             ];
 
-            ctx.fillStyle = c.secondary;
+            ctx.fillStyle = palette.light;
             corners.forEach(corner => {
                 ctx.beginPath();
-                ctx.arc(corner.x, corner.y, 12, 0, Math.PI * 2);
+                ctx.arc(corner.x, corner.y, 10, 0, Math.PI * 2);
                 ctx.fill();
             });
-
             ctx.restore();
         }
 
-        function drawPulseEffect(intensity) {
-            const c = themeColors[themeColor];
-            const pulse = Math.sin(time * 0.08) * 0.5 + 0.5;
+        function drawPulseFrames(ctx, W, H, palette, frame, numFrames) {
+            const pulse = Math.sin(frame * 0.12) * 0.5 + 0.5;
 
-            // نبضات دائرية
-            for (let i = 0; i < 4; i++) {
-                const phase = (time * 0.03 + i * 0.25) % 1;
-                const radius = 200 + phase * 400;
-                const alpha = (1 - phase) * 0.3 * intensity * pulse;
+            for (let i = 0; i < 3; i++) {
+                const phase = ((frame * 0.04 + i * 0.33) % 1);
+                const radius = 180 + phase * 380;
+                const alpha = (1 - phase) * 0.25 * pulse;
 
                 ctx.save();
                 ctx.globalAlpha = alpha;
-                ctx.strokeStyle = c.primary;
+                ctx.strokeStyle = palette.primary;
                 ctx.lineWidth = 3;
-                ctx.shadowColor = c.glow;
-                ctx.shadowBlur = 25;
+                ctx.shadowColor = palette.glow;
+                ctx.shadowBlur = 20;
                 ctx.beginPath();
                 ctx.arc(W/2, H/2, radius, 0, Math.PI * 2);
                 ctx.stroke();
@@ -458,127 +574,174 @@
 
             // توهج مركزي
             ctx.save();
-            ctx.globalAlpha = 0.15 * intensity * pulse;
-            const gradient = ctx.createRadialGradient(W/2, H/2, 50, W/2, H/2, 400);
-            gradient.addColorStop(0, c.glow);
+            ctx.globalAlpha = 0.12 * pulse;
+            const gradient = ctx.createRadialGradient(W/2, H/2, 30, W/2, H/2, 380);
+            gradient.addColorStop(0, palette.glow);
             gradient.addColorStop(1, 'transparent');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, W, H);
             ctx.restore();
         }
 
-        // ==================== حلقة الرسم الرئيسية ====================
-        function animate() {
-            time++;
-            drawBackground();
+        function drawSparkleFrames(ctx, W, H, palette, frame, particles) {
+            // جسيمات متلألئة
+            particles.forEach(p => {
+                p.x += p.speedX * 0.5;
+                p.y += p.speedY * 0.5;
+                p.life -= p.decay;
+                if (p.life <= 0) {
+                    p.x = Math.random() * W;
+                    p.y = Math.random() * H;
+                    p.life = 1;
+                }
 
-            let glowIntensity = 1;
-            let extraGlow = 0;
+                const sparkle = Math.sin(frame * 0.5 + p.x) > 0.5;
+                if (sparkle) {
+                    ctx.save();
+                    ctx.globalAlpha = p.life;
+                    ctx.shadowColor = palette.light;
+                    ctx.shadowBlur = p.size * 5;
+                    ctx.fillStyle = palette.light;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            });
 
-            switch (lightMode) {
-                case 'hazard':
-                    const flashOn = Math.sin(time * 0.3) > 0.3 || Math.sin(time * 0.7) > 0.6;
-                    glowIntensity = flashOn ? 1.4 : 0.5;
-                    extraGlow = flashOn ? 30 : 5;
-                    drawHazardEffect(1);
-                    break;
-                case 'fireworks':
-                    glowIntensity = 0.9 + Math.sin(time * 0.05) * 0.3;
-                    extraGlow = 15;
-                    drawFireworksEffect(1);
-                    break;
-                case 'neon':
-                    glowIntensity = 0.8 + Math.sin(time * 0.04) * 0.2;
-                    extraGlow = 10;
-                    drawNeonEffect(1);
-                    break;
-                case 'pulse':
-                    const pulse = Math.sin(time * 0.08) * 0.5 + 0.5;
-                    glowIntensity = 0.7 + pulse * 0.6;
-                    extraGlow = pulse * 40;
-                    drawPulseEffect(1);
-                    break;
-            }
-
-            drawText(glowIntensity, extraGlow);
-
-            // وميض أبيض سريع إضافي (تأثير فلاش)
-            if (Math.random() < 0.03 && lightMode === 'hazard') {
+            // وميض أبيض سريع
+            if (Math.random() < 0.08) {
                 ctx.save();
-                ctx.globalAlpha = 0.15;
+                ctx.globalAlpha = 0.1;
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, W, H);
                 ctx.restore();
             }
-
-            animationFrame = requestAnimationFrame(animate);
         }
 
-        // ==================== تحميل الصورة ====================
-        function downloadImage() {
-            // إيقاف الأنيميشن مؤقتاً لرسم إطار نظيف
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = W;
-            tempCanvas.height = H;
-            const tempCtx = tempCanvas.getContext('2d');
+        // ==================== إنشاء GIF ====================
+        function generateGIF(color, effect) {
+            return new Promise((resolve, reject) => {
+                // إنشاء كانفاس مؤقت
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = 600;
+                tempCanvas.height = 600;
+                const tempCtx = tempCanvas.getContext('2d');
 
-            // نسخ المحتوى الحالي
-            tempCtx.drawImage(canvas, 0, 0);
+                // إنشاء الإطارات
+                const numFrames = 40;
+                const frames = createGIFFrames(tempCanvas, tempCtx, color, effect, numFrames);
 
-            // تحميل
-            const link = document.createElement('a');
-            link.download = 'صلي_على_محمد.png';
-            link.href = tempCanvas.toDataURL('image/png');
-            link.click();
+                // استخدام gif.js لإنشاء GIF
+                const gif = new GIF({
+                    workers: 2,
+                    quality: 10,
+                    width: 600,
+                    height: 600,
+                    workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js'
+                });
 
-            // تأثير بصري للتأكيد
-            const btn = document.querySelector('.btn-download');
-            const originalText = btn.textContent;
-            btn.textContent = '✅ تم التحميل!';
-            btn.style.background = 'linear-gradient(135deg, #00cc44, #00aa33)';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, #ff2200, #ff6600)';
-            }, 1500);
-        }
+                // إضافة الإطارات
+                frames.forEach((frameData, index) => {
+                    // إنشاء كانفاس لكل إطار
+                    const frameCanvas = document.createElement('canvas');
+                    frameCanvas.width = 600;
+                    frameCanvas.height = 600;
+                    const frameCtx = frameCanvas.getContext('2d');
+                    frameCtx.putImageData(frameData, 0, 0);
+                    
+                    gif.addFrame(frameCanvas, { delay: 80, copy: true });
+                });
 
-        // ==================== تغيير الأوضاع ====================
-        function changeLightMode(mode) {
-            lightMode = mode;
-            // تحديث الأزرار
-            document.querySelectorAll('.btn-style').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
-        }
+                gif.on('finished', function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    resolve(url);
+                });
 
-        function changeTheme(color) {
-            themeColor = color;
-            // تحديث النقاط
-            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-            document.getElementById('dot' + color.charAt(0).toUpperCase() + color.slice(1)).classList.add('active');
-            // تحديث ألوان الجسيمات
-            particles.forEach(p => {
-                p.color = themeColors[themeColor];
+                gif.on('error', function(err) {
+                    reject(err);
+                });
+
+                gif.render();
             });
         }
 
-        // ==================== بدء التشغيل ====================
-        animate();
-
-        // تعديل حجم الكانفاس مع الشاشة
-        function resizeCanvas() {
-            const area = document.getElementById('designArea');
-            const rect = area.getBoundingClientRect();
-            // نحافظ على نسبة 1:1 داخل الـ canvas
-            canvas.style.width = rect.width + 'px';
-            canvas.style.height = rect.height + 'px';
+        // ==================== تحديث المعاينة ====================
+        async function updatePreview() {
+            const previewImg = document.getElementById('previewGif');
+            const statusMsg = document.getElementById('statusMsg');
+            
+            statusMsg.textContent = '⏳ جاري إنشاء الصورة المتحركة...';
+            statusMsg.style.color = '#ffaa66';
+            
+            try {
+                // إلغاء الرابط السابق
+                if (currentGifUrl) {
+                    URL.revokeObjectURL(currentGifUrl);
+                }
+                
+                currentGifUrl = await generateGIF(selectedColor, selectedEffect);
+                previewImg.src = currentGifUrl;
+                
+                statusMsg.textContent = '✅ الصورة المتحركة جاهزة! اضغط تحميل للحفظ';
+                statusMsg.style.color = '#00ff88';
+                
+                setTimeout(() => {
+                    statusMsg.textContent = '';
+                }, 3000);
+            } catch (err) {
+                console.error('خطأ في إنشاء GIF:', err);
+                statusMsg.textContent = '❌ حدث خطأ. استخدم متصفح Chrome أو Firefox';
+                statusMsg.style.color = '#ff4444';
+            }
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        // ==================== تحميل GIF ====================
+        function downloadGIF() {
+            if (!currentGifUrl) {
+                alert('الرجاء الانتظار حتى يتم إنشاء الصورة المتحركة أولاً');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = currentGifUrl;
+            link.download = 'صلي_على_محمد.gif';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            const statusMsg = document.getElementById('statusMsg');
+            statusMsg.textContent = '✅ تم تحميل الصورة المتحركة بنجاح!';
+            statusMsg.style.color = '#00ff88';
+            setTimeout(() => {
+                statusMsg.textContent = '';
+            }, 3000);
+        }
 
-        console.log('✨ النظام الدعوي جاهز - صل على محمد ﷺ');
-        console.log('📥 اضغط زر التحميل لحفظ الصورة');
-        console.log('🎨 جرب أوضاع الإضاءة المختلفة والألوان');
+        // ==================== مستمعي الأحداث ====================
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedColor = this.dataset.color;
+                updatePreview();
+            });
+        });
+
+        document.querySelectorAll('.effect-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.effect-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedEffect = this.dataset.effect;
+                updatePreview();
+            });
+        });
+
+        // ==================== بدء التشغيل ====================
+        updatePreview();
+
+        console.log('✨ النظام جاهز - صل على محمد ﷺ');
+        console.log('📥 اختر اللون والتأثير ثم اضغط تحميل');
     </script>
 </body>
 </html>
